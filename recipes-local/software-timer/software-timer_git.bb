@@ -4,9 +4,9 @@ HOMEPAGE = "https://github.com/TSMotter"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c05e5c78a0079a45cc8647dba69fcc06"
 
-SRCREV = "5d8327406dd60a785c8c2155b2a0217300f1467d"
-PV = "0.1+git${SRCPV}"
-SRC_URI = "git://github.com/TSMotter/SoftwareTimer;protocol=https;branch=master"
+SRCREV = "0cfd49ae2241306478250bd30cf972a30f29088f"
+PV = "from-git${SRCPV}"
+SRC_URI = "git://github.com/TSMotter/software-timer;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
@@ -15,7 +15,7 @@ inherit cmake
 EXTRA_OECMAKE = ""
 
 do_configure() {
-    cmake -S ${S} -B ${B} -D TARGET_GROUP=release
+    cmake -S ${S} -B ${B} -D TARGET_GROUP=example
 }
 
 do_compile() {
@@ -23,6 +23,5 @@ do_compile() {
 }
 
 do_install() {
-    install -d ${D}${bindir}
-    install -m 0755 src/main ${D}${bindir}/software-timer
+    cmake --install ${B} --prefix=${D}
 }
